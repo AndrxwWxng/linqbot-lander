@@ -2,8 +2,6 @@ import Image from "next/image";
 
 const REPO = "https://github.com/amzoeee/soma-hackathon";
 
-const pipeline = ["Message", "Plan", "Execute", "Recover"];
-
 const tools = [
   { name: "move_cartesian", purpose: "Differential XYZ through IK" },
   { name: "move_wrist", purpose: "Wrist pitch / roll, ±160°" },
@@ -30,8 +28,9 @@ export default function Home() {
         className="pixelated scale-x-[-1] object-cover object-[50%_38%]"
       />
 
-      {/* Legibility scrims: dark from the left, and top/bottom for the chrome. */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#180803]/90 via-[#180803]/55 to-transparent" />
+      {/* Legibility scrims. Narrow viewports get a softer vertical wash so the
+          scene survives the tighter crop; wide ones darken from the text side. */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#180803]/70 via-[#180803]/58 to-[#180803]/85 md:bg-gradient-to-r md:from-[#180803]/92 md:via-[#180803]/55 md:to-transparent" />
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#120603]/80 to-transparent" />
 
@@ -42,19 +41,6 @@ export default function Home() {
           </span>
 
           <nav className="flex items-center gap-2">
-            <ul className="hidden items-center rounded-full border border-white/15 bg-black/25 p-1 backdrop-blur-md md:flex">
-              {pipeline.map((step, i) => (
-                <li
-                  key={step}
-                  className={`rounded-full px-4 py-1.5 text-[13px] ${
-                    i === 0 ? "bg-white/15 text-white" : "text-white/70"
-                  }`}
-                >
-                  {step}
-                </li>
-              ))}
-            </ul>
-
             <span className="hidden rounded-full border border-white/15 bg-black/25 px-4 py-2 text-[13px] text-white/75 backdrop-blur-md sm:inline">
               SOMA Hackathon &rsquo;26
             </span>
